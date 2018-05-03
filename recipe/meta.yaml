@@ -1,8 +1,8 @@
 {% set name = "contextvars" %}
-{% set version = "2.1" %}
+{% set version = "2.2" %}
 {% set file_ext = "tar.gz" %}
 {% set hash_type = "sha256" %}
-{% set hash_value = "e9f9c5763d5a2afa6e420218e53954bd3829fc2d8acd806b98139d28c362cdf9" %}
+{% set hash_value = "7d73f8b1426cf0200fbe16900fcd73c9be29c54546b48a3980727e670b1acb10" %}
 
 package:
   name: '{{ name|lower }}'
@@ -25,6 +25,7 @@ requirements:
     - pip
   run:
     - python >=3,<3.7
+    - immutables ==0.5
 
 test:
   imports:
