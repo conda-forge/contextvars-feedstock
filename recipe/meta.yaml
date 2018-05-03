@@ -25,6 +25,7 @@ requirements:
     - pip
   run:
     - python >=3,<3.7
+    - immutables ==0.5
 
 test:
   imports:
