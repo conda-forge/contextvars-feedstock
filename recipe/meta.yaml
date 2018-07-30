@@ -1,8 +1,8 @@
 {% set name = "contextvars" %}
-{% set version = "2.2" %}
+{% set version = "2.3" %}
 {% set file_ext = "tar.gz" %}
 {% set hash_type = "sha256" %}
-{% set hash_value = "7d73f8b1426cf0200fbe16900fcd73c9be29c54546b48a3980727e670b1acb10" %}
+{% set hash_value = "2341042e1c03a271813e07dba29b6b60fa85c1005ea5ed1638a076cf50b4d625" %}
 
 package:
   name: '{{ name|lower }}'
