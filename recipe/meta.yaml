@@ -15,7 +15,7 @@ source:
 
 build:
   number: 0
-  script: python -m pip install --no-deps --ignore-installed .
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
   noarch: python
 
 requirements:
@@ -25,7 +25,7 @@ requirements:
     - pip
   run:
     - python >=3,<3.7
-    - immutables ==0.6
+    - immutables >=0.9
 
 test:
   imports:
