@@ -14,17 +14,17 @@ source:
   '{{ hash_type }}': '{{ hash_value }}'
 
 build:
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install . --no-deps -vv"
   noarch: python
 
 requirements:
   build:
-    - python
+    - python >=3.6
     - setuptools
     - pip
   run:
-    - python >=3,<3.7
+    - python >=3.6
     - immutables >=0.9
 
 test:
@@ -33,7 +33,7 @@ test:
 
 about:
   home: http://github.com/MagicStack/contextvars
-  license: Apache
+  license: Apache-2.0
   license_family: APACHE
   license_file: 'LICENSE'
   summary: PEP 567 Backport
