@@ -1,33 +1,32 @@
 {% set name = "contextvars" %}
 {% set version = "2.4" %}
-{% set file_ext = "tar.gz" %}
-{% set hash_type = "sha256" %}
-{% set hash_value = "f38c908aaa59c14335eeea12abea5f443646216c4e29380d7bf34d2018e2c39e" %}
 
 package:
   name: '{{ name|lower }}'
   version: '{{ version }}'
 
 source:
-  fn: '{{ name }}-{{ version }}.{{ file_ext }}'
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.{{ file_ext }}
-  '{{ hash_type }}': '{{ hash_value }}'
+  fn: '{{ name }}-{{ version }}.tar.gz'
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  'sha256': 'f38c908aaa59c14335eeea12abea5f443646216c4e29380d7bf34d2018e2c39e'
 
 build:
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install . --no-deps -vv"
   noarch: python
 
 requirements:
-  build:
-    - python
+  host:
+    - python {{ python_min }}
     - setuptools
     - pip
   run:
-    - python >=3,<3.7
+    - python >={{ python_min }},<3.7
     - immutables >=0.9
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - contextvars
 
