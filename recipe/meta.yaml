@@ -1,41 +1,42 @@
 {% set name = "contextvars" %}
 {% set version = "2.4" %}
-{% set file_ext = "tar.gz" %}
-{% set hash_type = "sha256" %}
-{% set hash_value = "f38c908aaa59c14335eeea12abea5f443646216c4e29380d7bf34d2018e2c39e" %}
 
 package:
-  name: '{{ name|lower }}'
-  version: '{{ version }}'
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
-  fn: '{{ name }}-{{ version }}.{{ file_ext }}'
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.{{ file_ext }}
-  '{{ hash_type }}': '{{ hash_value }}'
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/contextvars-{{ version }}.tar.gz
+  sha256: f38c908aaa59c14335eeea12abea5f443646216c4e29380d7bf34d2018e2c39e
 
 build:
-  number: 0
-  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
   noarch: python
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 1
 
 requirements:
-  build:
-    - python
-    - setuptools
+  host:
+    - python {{ python_min }}
     - pip
+    - setuptools
   run:
-    - python >=3,<3.7
+    - python >={{ python_min }}
     - immutables >=0.9
 
 test:
   imports:
     - contextvars
+  commands:
+    - pip check
+  requires:
+    - pip
+    - python {{ python_min }}
 
 about:
   home: http://github.com/MagicStack/contextvars
-  license: Apache
+  license: Apache-2.0
   license_family: APACHE
-  license_file: 'LICENSE'
+  license_file: LICENSE
   summary: PEP 567 Backport
   description: "Implements a backport of Python 3.7 contextvar module (see PEP 567)"
   dev_url: 'https://github.com/MagicStack/contextvars'
@@ -43,3 +44,4 @@ about:
 extra:
   recipe-maintainers:
     - nicoddemus
+    - rxm7706
